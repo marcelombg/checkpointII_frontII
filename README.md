@@ -98,8 +98,8 @@ Boa sorte e sucesso!
 ***
 ## Authors
 
-| [<img alt="fabio-neres" src="https://github.com/neresfabio.png?size=115" width="115"><br><sub>@fabio-neres</sub>](https://github.com/neresfabio) | [<img alt="marcelo-garofalo" src="https://github.com/marcelombg.png?size=115" width="115"><br><sub>@marcelo-garofalo</sub>](https://github.com/marcelombg) |
-| :---: |:---:|
+| [<img alt="fabio-neres" src="https://github.com/neresfabio.png?size=115" width="115"><br><sub>@fabio-neres</sub>](https://github.com/neresfabio) | [<img alt="marcelo-garofalo" src="https://github.com/marcelombg.png?size=115" width="115"><br><sub>@marcelo-garofalo</sub>](https://github.com/marcelombg) | [<img alt="tawan-silva" src="https://github.com/Tawan-Silva.png?size=115" width="115"><br><sub>@Tawan-Silva</sub>](https://github.com/Tawan-Silva)
+| :---: |:---:|:---:|
 
 Contatos:
 
