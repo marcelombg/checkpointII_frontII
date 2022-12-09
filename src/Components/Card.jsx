@@ -1,4 +1,6 @@
 import styles from "./Card.module.css";
+import { Link } from 'react-router-dom'
+
 
 const Card = (props) => {
 
@@ -17,6 +19,9 @@ const Card = (props) => {
           que vem da API */}
           <a href={`/dentist/${props.containerData.matricula}`}>
             <h5 className={`card-title ${styles.title}`}>{props.containerData.nome} {props.containerData.sobrenome}</h5>
+          </a>
+          <a>
+            <Link to="/detail">Detalhes</Link>
           </a>
         </div>
       </div>

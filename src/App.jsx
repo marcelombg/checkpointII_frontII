@@ -11,7 +11,7 @@ function App() {
       <div className={`app light}`}>
         <Navbar />
         <main>
-          <Outlet />
+        <Outlet />
         </main>
         <Footer />
       </div>
