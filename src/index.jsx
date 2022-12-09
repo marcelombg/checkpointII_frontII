@@ -24,10 +24,11 @@ const routerApp = createBrowserRouter([
   {
     path: 'detail',
     element: <Detail />
-  },
+  }
+  ,
   {
     path: "*",
-    loader: () => redirect(""),
+    loader: () => redirect("/home")
   }
 ])
 
