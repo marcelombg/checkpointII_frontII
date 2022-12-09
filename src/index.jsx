@@ -8,15 +8,15 @@ import Login from "./Routes/Login";
 import Detail from "./Routes/Detail";
 import Footer from "./Components/Footer";
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 //Lembre-se de configurar suas rotas e seu contexto aqui
 const routerApp = createBrowserRouter([
   {
-    path: '',
+    path: 'home',
     element: <Home />
-  },
+  },  
   {
     path: 'login',
     element: <Login />
@@ -28,8 +28,9 @@ const routerApp = createBrowserRouter([
   {
     path: "*",
     loader: () => redirect(""),
-  },
+  }
 ])
+
 root.render(
   <React.StrictMode>
     <Navbar />
