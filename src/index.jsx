@@ -13,7 +13,7 @@ import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom"
 const root = ReactDOM.createRoot(document.getElementById("root"));
 //Lembre-se de configurar suas rotas e seu contexto aqui
 const routerApp = createBrowserRouter([
-    {
+  {
     path: 'home',
     element: <Home />
   },  
@@ -24,6 +24,10 @@ const routerApp = createBrowserRouter([
   {
     path: 'detail',
     element: <Detail />
+  },
+  {
+    path: "*",
+    loader: () => redirect(""),
   }
 ])
 

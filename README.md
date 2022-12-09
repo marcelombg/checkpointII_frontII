@@ -105,6 +105,7 @@ Contatos:
 
 [![Linkedin Badge](https://img.shields.io/badge/-Fabio-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/fabioneresdejesus/)](https://www.linkedin.com/in/fabioneresdejesus/)
 [![Gmail Badge](https://img.shields.io/badge/-neresfjcomunic@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:neresfjcomunic@gmail.com)](mailto:neresfjcomunic@gmail.com)
+
 [![Linkedin Badge](https://img.shields.io/badge/-Marcelo-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/marcelombgarofalo/)](https://www.linkedin.com/in/marcelombgarofalo/)
 [![Hotmail Badge](https://img.shields.io/badge/marcelo_mbg@hotmail.com-0078D6?style=flat-square&logo=windows&logoColor=white&link=mailto:marcelo_mbg@hotmail.com)](mailto:marcelo_mbg@hotmail.com)
 <hr>
