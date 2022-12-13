@@ -9,9 +9,9 @@ import Detail from "./Routes/Detail";
 import Footer from "./Components/Footer";
 import "./index.css";
 import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom";
+import { AuthProvider } from "./hook/useAuth";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-//Lembre-se de configurar suas rotas e seu contexto aqui
 const routerApp = createBrowserRouter([
   {
     path: 'home',
@@ -34,8 +34,10 @@ const routerApp = createBrowserRouter([
 
 root.render(
   <React.StrictMode>
-    <Navbar />
-    <RouterProvider router = {routerApp} />
-    <Footer />
-  </React.StrictMode>
+      <AuthProvider>
+          <Navbar />
+            <RouterProvider router = {routerApp} />
+          <Footer />
+      </AuthProvider>
+    </React.StrictMode>
 );

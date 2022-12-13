@@ -2,45 +2,21 @@ import styles from "./Form.module.css";
 import { useEffect, useState } from "react";
 import { messageError  } from "../functions/toast";
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import { useAuth } from "../hook/useAuth";
 
 /*eslint-disable */
 
 
 const LoginForm = () => {
+  const { login } = useAuth();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [token, setToken] = useState('');
 
   useEffect(() => {
     localStorage.getItem('token') != null ? window.location.href = "http://localhost:3000/home" : null;
-  }, [])
-
-  const login = async (username, password) =>  {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username: username, password: password })
-    };
-    await fetch('https://dhodonto.ctdprojetos.com.br/auth', requestOptions)
-        .then(response => {
-
-            response.json().then(data => {
-
-            console.log(data)
-
-            localStorage.setItem("token", data.token);
-            setToken(data.token);
-            window.location.href = "http://localhost:3000/home"
-            toast.success('Login feito com sucesso');
-          }).catch(e => {
-            toast.error('Error ao fazer login, verifique seus dados e tente novamente.')
-          })
-        })
-  }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,8 +33,11 @@ const LoginForm = () => {
       messageError("Login ou Senha não pode ser nulos.")
     }
 
-    else if (username.length < 3 | password.length < 3) {
-      messageError("Username ou Senha precisa ser maior que 3 caracters")
+    else if (username.length < 5) {
+      messageError("Username não pode ser menor que 5 caracters")
+    }
+    else if (password.length < 3) {
+      messageError("Senha não pode ser menor que 3 caracters")
     }
     else {
       return true;
@@ -68,8 +47,6 @@ const LoginForm = () => {
   return (
     <>
    <ToastContainer />
-      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
       <div
         className={`text-center card container ${styles.card}`}
       >
