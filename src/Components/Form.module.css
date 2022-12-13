@@ -10,6 +10,7 @@
   background-color: #31313196;
 }
 
-.inputSpacing+.inputSpacing{
+.inputSpacing + .inputSpacing {
   margin: 1rem 0;
+  color: red;
 }
