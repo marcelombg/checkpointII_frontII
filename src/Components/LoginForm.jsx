@@ -1,6 +1,6 @@
 import styles from "./Form.module.css";
-import { useState } from "react";
-import { redirect } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { messageError  } from "../functions/toast";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -9,10 +9,13 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const LoginForm = () => {
 
-  var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [token, setToken] = useState('');
+
+  useEffect(() => {
+    localStorage.getItem('token') != null ? window.location.href = "http://localhost:3000/home" : null;
+  }, [])
 
   const login = async (username, password) =>  {
     const requestOptions = {
@@ -60,19 +63,6 @@ const LoginForm = () => {
     else {
       return true;
     }
-  }
-
-  const messageError = (message) => {
-    toast.error(message,{
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    })
   }
 
   return (
