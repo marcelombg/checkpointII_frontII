@@ -21,7 +21,7 @@ const DetailCard = (props) => {
         {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
         <div
-          className={`card-body row${theme}`}
+          className={`card-body row ${theme}`}
         >
           <div className="col-sm-12 col-lg-6">
             <img
