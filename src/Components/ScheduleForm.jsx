@@ -58,12 +58,16 @@ const ScheduleForm = () => {
     } else {
 
       console.log(token)
+      console.log(pacient)
+      console.log(dentist)
+      console.log(date)
 
       const requestConfig = {
         method: 'POST',
         headers: {
-          'Authentication': 'Bearer ' + token,
-          'Content-Type': 'application/json'
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': token
         },
         body: JSON.stringify(
           {
@@ -104,7 +108,7 @@ const ScheduleForm = () => {
 
       console.log(requestConfig)
   
-      fetch('https://dhodonto.ctdprojetos.com.br/consulta', requestConfig)
+      fetch('http://dhodonto.ctdprojetos.com.br/consulta', requestConfig)
       .then(
         response => {
           response.json().then(

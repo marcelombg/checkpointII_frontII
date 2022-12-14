@@ -9,6 +9,7 @@ import Detail from "./Routes/Detail";
 import Footer from "./Components/Footer";
 import "./index.css";
 import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom";
+import { ThemeProvider } from "./hooks/useTheme";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 //Lembre-se de configurar suas rotas e seu contexto aqui
