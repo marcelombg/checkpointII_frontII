@@ -10,6 +10,8 @@ import Footer from "./Components/Footer";
 import "./index.css";
 import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom";
 import { AuthProvider } from "./hooks/useAuth";
+import { ThemeProvider } from "./hooks/useTheme";
+import DetailCard from "./Components/DetailCard";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const routerApp = createBrowserRouter([
@@ -24,8 +26,12 @@ const routerApp = createBrowserRouter([
   {
     path: 'detail',
     element: <Detail />
-  }
-  ,
+  },
+  // {
+  //   path: 'dentist/:id',
+  //   element: <DetailCard />
+  // }
+  // ,
   {
     path: "*",
     loader: () => redirect("/home")
@@ -35,9 +41,11 @@ const routerApp = createBrowserRouter([
 root.render(
   <React.StrictMode>
       <AuthProvider>
-          <Navbar />
-            <RouterProvider router = {routerApp} />
-          <Footer />
+        <ThemeProvider>
+          <Navbar/>
+            <RouterProvider router = {routerApp}/>
+          <Footer/>
+        </ThemeProvider>
       </AuthProvider>
     </React.StrictMode>
 );

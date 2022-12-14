@@ -1,13 +1,17 @@
 import { useEffect } from "react";
 import ScheduleFormModal from "./ScheduleFormModal";
 import styles from "./DetailCard.module.css";
+import { useTheme } from "../hooks/useTheme";
 
 const DetailCard = (props) => {
+  const { theme } = useTheme()
 
   useEffect(() => {
     //Nesse useEffect, você vai fazer um fetch na api passando o 
     //id do dentista que está vindo do react-router e carregar os dados em algum estado
+    
     }, []);
+    
   return (
     //As instruções que estão com {''} precisam ser 
     //substituídas com as informações que vem da api
@@ -17,7 +21,7 @@ const DetailCard = (props) => {
         {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
         <div
-          className={`card-body row`}
+          className={`card-body row${theme}`}
         >
           <div className="col-sm-12 col-lg-6">
             <img
@@ -42,7 +46,7 @@ const DetailCard = (props) => {
               <button
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
-                className={`btn btn-light ${styles.button
+                className={`btn btn-${theme} ${styles.button
                   }`}
               >
                 Marcar consulta

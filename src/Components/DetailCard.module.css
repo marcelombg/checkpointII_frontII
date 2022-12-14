@@ -1,4 +1,4 @@
-.cardDark{
+.dark{
   background-color: #31313196;
 }
 
@@ -8,4 +8,8 @@
 
 .button{
   margin-top: 2rem;
+}
+
+.list-group-dark{
+  background-color: #5a5a5a;
 }

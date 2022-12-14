@@ -1,13 +1,15 @@
+import { useTheme } from "../hooks/useTheme";
 import styles from "./Navbar.module.css";
 
-const Navbar = (props) => {
+const Navbar = () => {
+  const { theme, changeTheme } = useTheme()
 
   return (
     <header className="sticky-top">
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar navbar-dark bg-dark ou navbar-light bg-light*/}
       <nav
-        className={`navbar navbar-expand-sm navbar-light bg-light`}
+        className={`navbar navbar-expand-sm navbar-light bg-${theme}`}
         aria-label="Third navbar example"
       >
         <div className="container">
@@ -55,9 +57,16 @@ const Navbar = (props) => {
                  Na linha seguinte deverá ser feito um teste se a aplicação
                  está em dark mode e deverá utilizar o icone ☀ ou 🌙 e btn-dark ou btn-light*/}
                 <button
-                  className={`btn btn-light${styles.btnStyle}`}
+                  className={`btn btn-${theme}${styles.btnStyle}`}
+                  onClick={() => changeTheme('light')}
                 >
-                  ☀ 🌙{" "}
+                  ☀
+                </button>
+                <button
+                  className={`btn btn-${theme}${styles.btnStyle}`}
+                  onClick={() => changeTheme('dark')}
+                >
+                  🌙
                 </button>
               </li>
             </ul>

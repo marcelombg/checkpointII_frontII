@@ -4,9 +4,11 @@ import React from "react";
 import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import { useTheme } from "../hooks/useTheme";
 
 const ScheduleForm = () => {
 
+  const { theme } = useTheme()
   const [dentist, setDentist] = useState([])
   const [pacient, setPacient] = useState([])
   const [date, setDate] = useState([])
@@ -118,7 +120,7 @@ const ScheduleForm = () => {
                 toast.success('Consulta marcada com sucesso!');
 
                 setDate('')
-                
+
               })
               .catch(e => {
                 toast.error('Error ao enviar a requisição.')
@@ -135,8 +137,7 @@ const ScheduleForm = () => {
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
       <div
-        className={`text-center container}`
-        }
+        className={`text-center container ${theme}`}
       >
         <form onSubmit={handleSubmit}>
           <div className={`row ${styles.rowSpacing}`}>
@@ -207,7 +208,7 @@ const ScheduleForm = () => {
             {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
             <button
-              className={`btn btn-light ${styles.button}`}
+              className={`btn btn-${theme} ${styles.button}`}
               type="submit"
               onSubmit={event => handleSubmit(event)}
             >
