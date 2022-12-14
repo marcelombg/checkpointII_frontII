@@ -11,7 +11,7 @@ const ScheduleForm = () => {
   const [pacient, setPacient] = useState([])
   const [date, setDate] = useState([])
   const [token, setToken] = useState('');
-  
+
   useEffect(() => {
     //Nesse useEffect, você vai fazer um fetch na api buscando TODOS os dentistas
     //e pacientes e carregar os dados em 2 estados diferentes
@@ -51,7 +51,7 @@ const ScheduleForm = () => {
 
     setToken(localStorage.getItem('token'));
 
-    if (dentist === '' || pacient === '' || date === '' || token === null || token === ''){
+    if (dentist === '' || pacient === '' || date === '' || token === null || token === '') {
 
       toast.error('Um ou mais campos não preenchidos.')
 
@@ -72,150 +72,151 @@ const ScheduleForm = () => {
         body: JSON.stringify(
           {
             "paciente":
-              {
-                "nome": "teste",
-                "sobrenome": "teste",
-                "matricula": "5dfce4f7-3d56-47d3-a442-b52c21c5d1f8",
-                "usuario": {
-                  "username": "testeteste"
-                },
-                "endereco": {
-                  "id": 1,
-                  "logradouro": "Rua das aboboras",
-                  "numero": "175",
-                  "complemento": "N/A",
-                  "bairro": "Centro",
-                  "municipio": "Osasco",
-                  "estado": "SP",
-                  "cep": "1877955",
-                  "pais": "BR"
-                },
-                "dataDeCadastro": "2022-11-08T14:31:58.813+00:00"
+            {
+              "nome": "teste",
+              "sobrenome": "teste",
+              "matricula": "5dfce4f7-3d56-47d3-a442-b52c21c5d1f8",
+              "usuario": {
+                "username": "testeteste"
               },
+              "endereco": {
+                "id": 1,
+                "logradouro": "Rua das aboboras",
+                "numero": "175",
+                "complemento": "N/A",
+                "bairro": "Centro",
+                "municipio": "Osasco",
+                "estado": "SP",
+                "cep": "1877955",
+                "pais": "BR"
+              },
+              "dataDeCadastro": "2022-11-08T14:31:58.813+00:00"
+            },
             "dentista":
-              {
-                "nome": "Admin",
-                "sobrenome": "Admin",
-                "matricula": "c3e6cf30-dccc-4e21-935a-8efe9344677e",
-                "usuario": {
-                  "username": "dentistaAdmin"
-                }
-              },
+            {
+              "nome": "Admin",
+              "sobrenome": "Admin",
+              "matricula": "c3e6cf30-dccc-4e21-935a-8efe9344677e",
+              "usuario": {
+                "username": "dentistaAdmin"
+              }
+            },
             "dataHoraAgendamento": "2022-12-30T11:04"
           }
         )
       }
 
       console.log(requestConfig)
-  
+
       fetch('http://dhodonto.ctdprojetos.com.br/consulta', requestConfig)
-      .then(
-        response => {
-          response.json().then(
-            data => {console.log(data)
+        .then(
+          response => {
+            response.json().then(
+              data => {
+                console.log(data)
 
-            toast.success('Consulta marcada com sucesso!');
-            })
-            .catch(e => {
-            toast.error('Error ao enviar a requisição.')
-            })
+                toast.success('Consulta marcada com sucesso!');
+
+                setDate('')
+                
+              })
+              .catch(e => {
+                toast.error('Error ao enviar a requisição.')
+              })
           }
-      )
-
-      setDate('')
-
+        )
     }
 
   }
 
-return (
-  <>
-   <ToastContainer />
-    {/* //Na linha seguinte deverá ser feito um teste se a aplicação
+  return (
+    <>
+      <ToastContainer />
+      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
-    <div
-      className={`text-center container}`
-      }
-    >
-      <form onSubmit={handleSubmit}>
-        <div className={`row ${styles.rowSpacing}`}>
-          <div className="col-sm-12 col-lg-6">
-            <label htmlFor="dentist" className="form-label">
-              Dentist
-            </label>
-            <select className="form-select" name="dentist" id="dentist">
+      <div
+        className={`text-center container}`
+        }
+      >
+        <form onSubmit={handleSubmit}>
+          <div className={`row ${styles.rowSpacing}`}>
+            <div className="col-sm-12 col-lg-6">
+              <label htmlFor="dentist" className="form-label">
+                Dentist
+              </label>
+              <select className="form-select" name="dentist" id="dentist">
 
-              {
-                dentist.map(dentistlist => {
-                  return (
-                    <option
-                      key={dentistlist.matricula}
-                      value={dentistlist.matricula}
-                    >
-                      {dentistlist.nome} {dentistlist.sobrenome}
-                    </option>
+                {
+                  dentist.map(dentistlist => {
+                    return (
+                      <option
+                        key={dentistlist.matricula}
+                        value={dentistlist.matricula}
+                      >
+                        {dentistlist.nome} {dentistlist.sobrenome}
+                      </option>
+                    )
+                  }
                   )
                 }
-                )
-              }
 
-            </select>
-          </div>
+              </select>
+            </div>
 
-          <div className="col-sm-12 col-lg-6">
-            <label htmlFor="patient" className="form-label">
-              Patient
-            </label>
-            <select className="form-select" name="patient" id="patient">
+            <div className="col-sm-12 col-lg-6">
+              <label htmlFor="patient" className="form-label">
+                Patient
+              </label>
+              <select className="form-select" name="patient" id="patient">
 
-              {
-                pacient.map(pacienteList => {
-                  return (
-                    <option
-                      key={pacienteList.matricula}
-                      value={pacienteList.matricula}
-                    >
-                      {pacienteList.nome} {pacienteList.sobrenome}
-                    </option>
+                {
+                  pacient.map(pacienteList => {
+                    return (
+                      <option
+                        key={pacienteList.matricula}
+                        value={pacienteList.matricula}
+                      >
+                        {pacienteList.nome} {pacienteList.sobrenome}
+                      </option>
+                    )
+                  }
                   )
                 }
-                )
-              }
 
-            </select>
+              </select>
+            </div>
+
           </div>
 
-        </div>
-
-        <div className={`row ${styles.rowSpacing}`}>
-          <div className="col-12">
-            <label htmlFor="appointmentDate" className="form-label">
-              Date
-            </label>
-            <input
-              className="form-control"
-              id="appointmentDate"
-              name="appointmentDate"
-              type="datetime-local"
-              value={date}
-              onChange={event => setDate(event.target.value)}
-            />
+          <div className={`row ${styles.rowSpacing}`}>
+            <div className="col-12">
+              <label htmlFor="appointmentDate" className="form-label">
+                Date
+              </label>
+              <input
+                className="form-control"
+                id="appointmentDate"
+                name="appointmentDate"
+                type="datetime-local"
+                value={date}
+                onChange={event => setDate(event.target.value)}
+              />
+            </div>
           </div>
-        </div>
-        <div className={`row ${styles.rowSpacing}`}>
-          {/* //Na linha seguinte deverá ser feito um teste se a aplicação
+          <div className={`row ${styles.rowSpacing}`}>
+            {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
-          <button
-            className={`btn btn-light ${styles.button}`}
-            type="submit"
-            onSubmit={event => handleSubmit(event)}
-          >
-            Schedule
-          </button>
-        </div>
-      </form>
-    </div>
-  </>
+            <button
+              className={`btn btn-light ${styles.button}`}
+              type="submit"
+              onSubmit={event => handleSubmit(event)}
+            >
+              Schedule
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

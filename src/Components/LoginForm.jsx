@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { messageError  } from "../functions/toast";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-import { useAuth } from "../hook/useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 /*eslint-disable */
 

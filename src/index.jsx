@@ -9,7 +9,7 @@ import Detail from "./Routes/Detail";
 import Footer from "./Components/Footer";
 import "./index.css";
 import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom";
-import { AuthProvider } from "./hook/useAuth";
+import { AuthProvider } from "./hooks/useAuth";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const routerApp = createBrowserRouter([

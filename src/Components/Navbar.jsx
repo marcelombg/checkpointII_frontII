@@ -1,9 +1,6 @@
-import { useTheme } from "../hooks/useTheme";
 import styles from "./Navbar.module.css";
 
 const Navbar = (props) => {
-
-  useTheme()
 
   return (
     <header className="sticky-top">
