@@ -35,6 +35,7 @@ const ScheduleForm = () => {
 
   }, []);
 
+
   const handleSubmit = (event) => {
 
     //Nesse handlesubmit você deverá usar o preventDefault,
@@ -47,7 +48,9 @@ const ScheduleForm = () => {
 
     if (token === "" || token === null) {
 
-      toast.error("Usuário não autorizado.");
+      toast.error("Usuário não autorizado. Você será redirecionado para a página de Login.");
+
+      setTimeout(() => window.location.href = "http://localhost:3000/login", 4000);
 
     } else if (matriculaPaciente === "" || matriculaDentista === "" || date === "") {
 
@@ -90,8 +93,6 @@ const ScheduleForm = () => {
         }
       );
     }
-
-
   };
 
   return (
@@ -108,7 +109,7 @@ const ScheduleForm = () => {
                 className="form-select"
                 name="dentist"
                 id="dentist"
-                onChange={(e) => setMatriculaDentista(e.target.value)}
+                onChange={e => setMatriculaDentista(e.target.value)}
               >
                 <option></option>
                 {dentist.map((dentistlist) => {
@@ -132,7 +133,7 @@ const ScheduleForm = () => {
                 className="form-select"
                 name="patient"
                 id="patient"
-                onChange={(e) => setMatriculaPaciente(e.target.value)}
+                onChange={e => setMatriculaPaciente(e.target.value)}
               >
                 <option></option>
                 {pacient.map((pacienteList) => {
@@ -160,7 +161,7 @@ const ScheduleForm = () => {
                 name="appointmentDate"
                 type="datetime-local"
                 value={date}
-                onChange={(event) => setDate(event.target.value)}
+                onChange={event => setDate(event.target.value)}
               />
             </div>
           </div>

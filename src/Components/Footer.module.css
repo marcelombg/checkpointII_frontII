@@ -36,3 +36,8 @@
   max-width: 2rem;
   height: auto;
 }
+
+.iconsDark,
+.dhLogoDark{
+  filter: brightness(100);
+}

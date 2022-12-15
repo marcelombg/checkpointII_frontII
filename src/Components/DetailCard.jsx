@@ -10,7 +10,6 @@ const DetailCard = () => {
   const [detail, setDetail] = useState({})
   const [token, setToken] = useState('');
   const { id } = useParams('')
-
  
   useEffect(() => {
     //Nesse useEffect, você vai fazer um fetch na api passando o 
@@ -38,9 +37,7 @@ const DetailCard = () => {
 
   }, []);
 
-  console.log(detail)
-
-  return (
+    return (
     //As instruções que estão com {''} precisam ser 
     //substituídas com as informações que vem da api
     <>
