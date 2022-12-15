@@ -20,18 +20,17 @@ const DetailCard = (props) => {
     const requestConfig = {
       method: 'GET',
       headers: {
-      'Authorization': `Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBcGkgREggRWNvbW1lcmNlIiwic3ViIjoiZGVudGlzdGFBZG1pbiIsImlhdCI6MTY3MTA1NzQ2MiwiZXhwIjoxNjcxMDYxMDYyfQ.ptpP9z6j7Gr4DHsBY0glArtnGF4vdxGb-IVhI0Q7GNA`,
+      'Authorization': `Bearer ${token}`,
       }
     }
 
 
     fetch(`http://dhodonto.ctdprojetos.com.br/dentista?matricula=${id}`, requestConfig)
     .then(
-      response => {
-        response.json().then(
+      async (response) => {
+         await response.json().then(
           data => {
             setDetail(data)
-            console.log(data)
           }
         )
       }
@@ -43,7 +42,7 @@ const DetailCard = (props) => {
     //As instruções que estão com {''} precisam ser 
     //substituídas com as informações que vem da api
     <>
-      <h1>Detail about Dentist </h1>
+      <h1>Detail about Dentist {detail.nome}</h1>
       <section className="card col-sm-12 col-lg-6 container">
         {/* //Na linha seguinte deverá ser feito um teste se a aplicação
           // está em dark mode e deverá utilizar o css correto */}
@@ -64,7 +63,7 @@ const DetailCard = (props) => {
                 Sobrenome: {detail.sobrenome}
               </li>
               <li className="list-group-item">
-                Usuário: 
+                Usuário: {detail.matricula}
               </li>
             </ul>
             <div className="text-center">

@@ -13,7 +13,7 @@ const Navbar = () => {
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar navbar-dark bg-dark ou navbar-light bg-light*/}
       <nav
-        className={`navbar navbar-expand-sm navbar-light bg-${theme}`}
+        className={`navbar navbar-expand-sm navbar-${theme} bg-${theme}`}
         aria-label="Third navbar example"
       >
         <div className="container">
@@ -40,7 +40,7 @@ const Navbar = () => {
             <ul className="navbar-nav mb-2 mb-sm-0">
               <li className={`nav-item ${styles.navBarLink}`}>
                 {/* Ao clicar, o usuário deve ser redirecionado a home, com react-router */}
-                <a className="nav-link" href="/home">
+                <a className="nav-link " href="/home">
                   Home
                 </a>
               </li>
@@ -74,16 +74,14 @@ const Navbar = () => {
                  Na linha seguinte deverá ser feito um teste se a aplicação
                  está em dark mode e deverá utilizar o icone ☀ ou 🌙 e btn-dark ou btn-light*/}
                 <button
-                  className={`btn btn-${theme}${styles.btnStyle}`}
+                  className={`btn btn-light ${styles.btnStyle}`}
                   onClick={() => changeTheme('light')}
-                >
-                  ☀
+                >☀
                 </button>
                 <button
-                  className={`btn btn-${theme}${styles.btnStyle}`}
+                  className={`btn btn-light ${styles.btnStyle}`}
                   onClick={() => changeTheme('dark')}
-                >
-                  🌙
+                >🌙
                 </button>
               </li>
             </ul>

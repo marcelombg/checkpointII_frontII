@@ -14,26 +14,30 @@ const ScheduleForm = () => {
   const [matriculaDentista, setMatriculaDentista] = useState("");
   const [date, setDate] = useState([]);
   const [token, setToken] = useState("");
-  const seletedValueDentist = "Selecione um dentista";
-  const seletedValuePacient = "Selecione um paciente";
 
   useEffect(() => {
-    setDate("");
 
-    fetch("http://dhodonto.ctdprojetos.com.br/dentista").then((response) => {
-      response.json().then((data) => {
+    setToken(localStorage.getItem("token"));
+
+    fetch("http://dhodonto.ctdprojetos.com.br/dentista").then(
+      async (response) => {
+      await response.json().then((data) => {
         setDentist(data);
       });
     });
 
-    fetch("http://dhodonto.ctdprojetos.com.br/paciente").then((response) => {
-      response.json().then((data) => {
+    fetch("http://dhodonto.ctdprojetos.com.br/paciente").then(
+      async (response) => {
+      await response.json().then((data) => {
         setPacient(data.body);
       });
     });
+
   }, []);
 
   const handleSubmit = (event) => {
+
+
     //Nesse handlesubmit você deverá usar o preventDefault,
     //obter os dados do formulário e enviá-los no corpo da requisição
     //para a rota da api que marca a consulta
@@ -42,11 +46,18 @@ const ScheduleForm = () => {
 
     event.preventDefault();
 
-    setToken(localStorage.getItem("token"));
+
+    if (token === "" || token === null){
+      toast.error("Usuário não autorizado.");
+
+    }
 
     if (matriculaPaciente === "" || matriculaDentista === "" || date === "") {
+
       toast.error("Um ou mais campos não preenchidos.");
+
     } else {
+
       const requestConfig = {
         method: "POST",
         headers: {
@@ -64,25 +75,29 @@ const ScheduleForm = () => {
         }),
       };
 
-      console.log(requestConfig);
-
       fetch("http://dhodonto.ctdprojetos.com.br/consulta", requestConfig).then(
-        (response) => {
-          response
+        async (response) => {
+          await response
             .json()
             .then((data) => {
               console.log(data);
 
-              toast.success("Consulta marcada com sucesso!");
+              toast.success("Consulta marcada com sucesso! Você será redirecionado para a Home.");
 
-              setDate("");
+              setTimeout(
+                () => window.location.href = "http://localhost:3000/home",
+                4000
+              );
+
             })
             .catch((e) => {
-              toast.error("Error ao enviar a requisição.");
+              toast.error("Erro ao enviar a requisição.");
             });
         }
       );
     }
+
+
   };
 
   return (
@@ -99,9 +114,9 @@ const ScheduleForm = () => {
                 className="form-select"
                 name="dentist"
                 id="dentist"
-                value={seletedValueDentist}
                 onChange={(e) => setMatriculaDentista(e.target.value)}
               >
+                <option></option>
                 {dentist.map((dentistlist) => {
                   return (
                     <option
@@ -123,9 +138,9 @@ const ScheduleForm = () => {
                 className="form-select"
                 name="patient"
                 id="patient"
-                value={seletedValuePacient}
                 onChange={(e) => setMatriculaPaciente(e.target.value)}
               >
+                <option></option>
                 {pacient.map((pacienteList) => {
                   return (
                     <option

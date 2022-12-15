@@ -21,6 +21,10 @@ h1{
   padding: 2rem 0;
 }
 
+.appdark{
+  background-color: #12121296;
+}
+
 .navbar-nav{
   align-items: center;
 }
@@ -83,6 +87,7 @@ tr:nth-child(even) {
   background-color: #12121296;
   color: white;
 }
+
 .dark > a {
   color: white;
 }

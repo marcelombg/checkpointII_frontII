@@ -4,13 +4,14 @@ import { messageError  } from "../functions/toast";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { useAuth } from "../hooks/useAuth";
+import { useTheme } from "../hooks/useTheme";
 
 /*eslint-disable */
 
 
 const LoginForm = () => {
   const { login } = useAuth();
-
+  const { theme } = useTheme()
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -48,7 +49,7 @@ const LoginForm = () => {
     <>
    <ToastContainer />
       <div
-        className={`text-center card container ${styles.card}`}
+        className={`text-center card container ${styles.card} ${theme}`}
       >
         <div className={`card-body ${styles.CardBody}`}>
           <form>
