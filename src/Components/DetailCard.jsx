@@ -35,7 +35,7 @@ const DetailCard = () => {
       }
     )
 
-  }, []);
+  });
 
     return (
     //As instruções que estão com {''} precisam ser 
