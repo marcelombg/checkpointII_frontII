@@ -138,7 +138,6 @@ const ScheduleForm = () => {
                       <option
                         key={pacienteList.matricula}
                         value={pacienteList.matricula}
-                        onChange={(e) => setTargetDentist(e.target.value)}
                       >
                         {pacienteList.nome} {pacienteList.sobrenome}
                       </option>
