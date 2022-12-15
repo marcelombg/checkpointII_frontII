@@ -1,8 +1,12 @@
 import { useTheme } from "../hooks/useTheme";
 import styles from "./Navbar.module.css";
+import { useAuth } from "../hooks/useAuth";
 
 const Navbar = () => {
   const { theme, changeTheme } = useTheme()
+  const { logout } = useAuth()
+
+  const token = localStorage.getItem('token');
 
   return (
     <header className="sticky-top">
@@ -51,6 +55,19 @@ const Navbar = () => {
                   Login
                 </a>
               </li>
+              {token ? (
+                <li className={`nav-item ${styles.navBarLink}`}>
+                {/* Se o usuário estiver logado, deverá aparecer um botão de logout
+                que vai apagar o token do localstorage.
+                Se o usuário estiver deslogado, um link fará um redirecionamento, com react-router,
+                ao formulário de login
+                O botão de logout deverá ser testado darkmode
+                se sim, btn-dark, se não, btn-light */}
+                <a className="nav-link" href="/home" onClick={logout}>
+                  Logout
+                </a>
+              </li>
+              ) : null}
               <li className={`nav-item`}>
                 {/* Ao ser clicado, esse botão mudará a aplicação para dark mode ou light mode.
                  Lembre-se de usar um estado no contexto para fazer essa alteração.

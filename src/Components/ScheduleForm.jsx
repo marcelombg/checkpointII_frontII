@@ -2,142 +2,116 @@
 import { useEffect, useState } from "react";
 import styles from "./ScheduleForm.module.css";
 import React from "react";
-import axios from "axios";
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 import { useTheme } from "../hooks/useTheme";
 
 const ScheduleForm = () => {
-
-  const { theme } = useTheme()
-  const [dentist, setDentist] = useState([])
-  const [pacient, setPacient] = useState([])
-  const [targetPacient, setTargetPacient] = useState('')
-  const [targetDentist, setTargetDentist] = useState('')
-  const [date, setDate] = useState([])
-  const [token, setToken] = useState('');
+  const { theme } = useTheme();
+  const [dentist, setDentist] = useState([]);
+  const [pacient, setPacient] = useState([]);
+  const [matriculaPaciente, setMatriculaPaciente] = useState("");
+  const [matriculaDentista, setMatriculaDentista] = useState("");
+  const [date, setDate] = useState([]);
+  const [token, setToken] = useState("");
+  const seletedValueDentist = "Selecione um dentista";
+  const seletedValuePacient = "Selecione um paciente";
 
   useEffect(() => {
-    //Nesse useEffect, você vai fazer um fetch na api buscando TODOS os dentistas
-    //e pacientes e carregar os dados em 2 estados diferentes
-    setDate('')
+    setDate("");
 
-    fetch('http://dhodonto.ctdprojetos.com.br/dentista').then(
-      response => {
-        response.json().then(
-          data => {
-            setDentist(data)
-          }
-        )
-      }
-    )
+    fetch("http://dhodonto.ctdprojetos.com.br/dentista").then((response) => {
+      response.json().then((data) => {
+        setDentist(data);
+      });
+    });
 
-    fetch('http://dhodonto.ctdprojetos.com.br/paciente').then(
-      response => {
-        response.json().then(
-          data => {
-            setPacient(data.body)
-          }
-        )
-      }
-    )
-
+    fetch("http://dhodonto.ctdprojetos.com.br/paciente").then((response) => {
+      response.json().then((data) => {
+        setPacient(data.body);
+      });
+    });
   }, []);
 
-  // const de Post de envio de consulta
   const handleSubmit = (event) => {
     //Nesse handlesubmit você deverá usar o preventDefault,
-    //obter os dados do formulário e enviá-los no corpo da requisição 
+    //obter os dados do formulário e enviá-los no corpo da requisição
     //para a rota da api que marca a consulta
     //lembre-se que essa rota precisa de um Bearer Token para funcionar.
     //Lembre-se de usar um alerta para dizer se foi bem sucedido ou ocorreu um erro
 
-    event.preventDefault()
+    event.preventDefault();
 
-    setToken(localStorage.getItem('token'));
+    setToken(localStorage.getItem("token"));
 
-    if (dentist === '' || pacient === '' || date === '' || token === null || token === '') {
-
-      toast.error('Um ou mais campos não preenchidos.')
-
+    if (matriculaPaciente === "" || matriculaDentista === "" || date === "") {
+      toast.error("Um ou mais campos não preenchidos.");
     } else {
-
       const requestConfig = {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(
-          {
-            "paciente":
-            {
-              "matricula": "`${pacienteList.matricula}`",
-            },
-            "dentista":
-            {
-              "matricula": "`${dentistlist.matricula}`",
-            },
-            "dataHoraAgendamento": "2022-12-18T22:42:40.815Z"
-          }
-        )
-      }
+        body: JSON.stringify({
+          paciente: {
+            matricula: `${matriculaPaciente}`,
+          },
+          dentista: {
+            matricula: `${matriculaDentista}`,
+          },
+          dataHoraAgendamento: `${date}`,
+        }),
+      };
 
-      console.log(requestConfig)
+      console.log(requestConfig);
 
-      fetch('http://dhodonto.ctdprojetos.com.br/consulta', requestConfig)
-        .then(
-          response => {
-            response.json().then(
-              data => {
-                console.log(data)
+      fetch("http://dhodonto.ctdprojetos.com.br/consulta", requestConfig).then(
+        (response) => {
+          response
+            .json()
+            .then((data) => {
+              console.log(data);
 
-                toast.success('Consulta marcada com sucesso!');
+              toast.success("Consulta marcada com sucesso!");
 
-                setDate('')
-
-              })
-              .catch(e => {
-                toast.error('Error ao enviar a requisição.')
-              })
-          }
-        )
+              setDate("");
+            })
+            .catch((e) => {
+              toast.error("Error ao enviar a requisição.");
+            });
+        }
+      );
     }
-
-
-  }
+  };
 
   return (
     <>
       <ToastContainer />
-      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
-      <div
-        className={`text-center container ${theme}`}
-      >
+      <div className={`text-center container ${theme}`}>
         <form>
           <div className={`row ${styles.rowSpacing}`}>
             <div className="col-sm-12 col-lg-6">
               <label htmlFor="dentist" className="form-label">
                 Dentist
               </label>
-              <select className="form-select" name="dentist" id="dentist">
-
-                {
-                  dentist.map(dentistlist => {
-                    return (
-                      <option
-                        key={dentistlist.matricula}
-                        value={dentistlist.matricula}
-                        onChange={(e) => setTargetPacient(e.target.value)}
-                      >
-                        {dentistlist.nome} {dentistlist.sobrenome}
-                      </option>
-                    )
-                  }
-                  )
-                }
-
+              <select
+                className="form-select"
+                name="dentist"
+                id="dentist"
+                value={seletedValueDentist}
+                onChange={(e) => setMatriculaDentista(e.target.value)}
+              >
+                {dentist.map((dentistlist) => {
+                  return (
+                    <option
+                      key={dentistlist.matricula}
+                      value={dentistlist.matricula}
+                    >
+                      {dentistlist.nome} {dentistlist.sobrenome}
+                    </option>
+                  );
+                })}
               </select>
             </div>
 
@@ -145,26 +119,25 @@ const ScheduleForm = () => {
               <label htmlFor="patient" className="form-label">
                 Patient
               </label>
-              <select className="form-select" name="patient" id="patient">
-
-                {
-                  pacient.map(pacienteList => {
-                    return (
-                      <option
-                        key={pacienteList.matricula}
-                        value={pacienteList.matricula}
-                        onChange={(e) => setTargetDentist(e.target.value)}
-                      >
-                        {pacienteList.nome} {pacienteList.sobrenome}
-                      </option>
-                    )
-                  }
-                  )
-                }
-
+              <select
+                className="form-select"
+                name="patient"
+                id="patient"
+                value={seletedValuePacient}
+                onChange={(e) => setMatriculaPaciente(e.target.value)}
+              >
+                {pacient.map((pacienteList) => {
+                  return (
+                    <option
+                      key={pacienteList.matricula}
+                      value={pacienteList.matricula}
+                    >
+                      {pacienteList.nome} {pacienteList.sobrenome}
+                    </option>
+                  );
+                })}
               </select>
             </div>
-
           </div>
 
           <div className={`row ${styles.rowSpacing}`}>
@@ -178,7 +151,7 @@ const ScheduleForm = () => {
                 name="appointmentDate"
                 type="datetime-local"
                 value={date}
-                onChange={event => setDate(event.target.value)}
+                onChange={(event) => setDate(event.target.value)}
               />
             </div>
           </div>
