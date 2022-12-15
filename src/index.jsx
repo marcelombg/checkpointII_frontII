@@ -2,11 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-import Navbar from "./Components/Navbar";
 import Home from "./Routes/Home";
 import Login from "./Routes/Login";
 import Detail from "./Routes/Detail";
-import Footer from "./Components/Footer";
 import "./index.css";
 import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom";
 import { AuthProvider } from "./hooks/useAuth";
@@ -38,7 +36,7 @@ const routerApp = createBrowserRouter([
       }
       ,
       {
-        path: "*",
+        path: "",
         loader: () => redirect("/home")
       }
     ]

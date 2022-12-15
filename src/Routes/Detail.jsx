@@ -1,9 +1,8 @@
-import { useEffect } from "react";
 import { useState } from "react";
 import DetailCard from "../Components/DetailCard";
 
 const Detail = () => {
-  const [detail, setDetail] = useState([])
+  const [detail] = useState([])
 
   return (
     <>
