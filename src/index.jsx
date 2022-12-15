@@ -27,11 +27,11 @@ const routerApp = createBrowserRouter([
     path: 'detail',
     element: <Detail />
   },
-  // {
-  //   path: 'dentist/:id',
-  //   element: <DetailCard />
-  // }
-  // ,
+  {
+    path: 'dentist/:id',
+    element: <DetailCard />
+  }
+  ,
   {
     path: "*",
     loader: () => redirect("/home")

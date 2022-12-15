@@ -1,3 +1,4 @@
+// eslint-disable
 import { useEffect, useState } from "react";
 import styles from "./ScheduleForm.module.css";
 import React from "react";
@@ -11,6 +12,8 @@ const ScheduleForm = () => {
   const { theme } = useTheme()
   const [dentist, setDentist] = useState([])
   const [pacient, setPacient] = useState([])
+  const [targetPacient, setTargetPacient] = useState('')
+  const [targetDentist, setTargetDentist] = useState('')
   const [date, setDate] = useState([])
   const [token, setToken] = useState('');
 
@@ -19,7 +22,7 @@ const ScheduleForm = () => {
     //e pacientes e carregar os dados em 2 estados diferentes
     setDate('')
 
-    fetch('https://dhodonto.ctdprojetos.com.br/dentista').then(
+    fetch('http://dhodonto.ctdprojetos.com.br/dentista').then(
       response => {
         response.json().then(
           data => {
@@ -29,7 +32,7 @@ const ScheduleForm = () => {
       }
     )
 
-    fetch('https://dhodonto.ctdprojetos.com.br/paciente').then(
+    fetch('http://dhodonto.ctdprojetos.com.br/paciente').then(
       response => {
         response.json().then(
           data => {
@@ -59,50 +62,23 @@ const ScheduleForm = () => {
 
     } else {
 
-      console.log(token)
-      console.log(pacient)
-      console.log(dentist)
-      console.log(date)
-
       const requestConfig = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': token
+        'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(
           {
             "paciente":
             {
-              "nome": "teste",
-              "sobrenome": "teste",
-              "matricula": "5dfce4f7-3d56-47d3-a442-b52c21c5d1f8",
-              "usuario": {
-                "username": "testeteste"
-              },
-              "endereco": {
-                "id": 1,
-                "logradouro": "Rua das aboboras",
-                "numero": "175",
-                "complemento": "N/A",
-                "bairro": "Centro",
-                "municipio": "Osasco",
-                "estado": "SP",
-                "cep": "1877955",
-                "pais": "BR"
-              },
-              "dataDeCadastro": "2022-11-08T14:31:58.813+00:00"
+              "matricula": "`${pacienteList.matricula}`",
             },
             "dentista":
             {
-              "nome": "Admin",
-              "sobrenome": "Admin",
-              "matricula": "c3e6cf30-dccc-4e21-935a-8efe9344677e",
-              "usuario": {
-                "username": "dentistaAdmin"
-              }
+              "matricula": "`${dentistlist.matricula}`",
             },
-            "dataHoraAgendamento": "2022-12-30T11:04"
+            "dataHoraAgendamento": "2022-12-18T22:42:40.815Z"
           }
         )
       }
@@ -128,6 +104,7 @@ const ScheduleForm = () => {
         )
     }
 
+
   }
 
   return (
@@ -138,7 +115,7 @@ const ScheduleForm = () => {
       <div
         className={`text-center container ${theme}`}
       >
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className={`row ${styles.rowSpacing}`}>
             <div className="col-sm-12 col-lg-6">
               <label htmlFor="dentist" className="form-label">
@@ -152,6 +129,7 @@ const ScheduleForm = () => {
                       <option
                         key={dentistlist.matricula}
                         value={dentistlist.matricula}
+                        onChange={(e) => setTargetPacient(e.target.value)}
                       >
                         {dentistlist.nome} {dentistlist.sobrenome}
                       </option>
@@ -175,6 +153,7 @@ const ScheduleForm = () => {
                       <option
                         key={pacienteList.matricula}
                         value={pacienteList.matricula}
+                        onChange={(e) => setTargetDentist(e.target.value)}
                       >
                         {pacienteList.nome} {pacienteList.sobrenome}
                       </option>
@@ -209,7 +188,7 @@ const ScheduleForm = () => {
             <button
               className={`btn btn-${theme} ${styles.button}`}
               type="submit"
-              onSubmit={event => handleSubmit(event)}
+              onClick={handleSubmit}
             >
               Schedule
             </button>
