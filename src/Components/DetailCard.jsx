@@ -1,23 +1,52 @@
 import { useEffect } from "react";
 import ScheduleFormModal from "./ScheduleFormModal";
 import styles from "./DetailCard.module.css";
+import { useTheme } from "../hooks/useTheme";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 
-const DetailCard = (props) => {
-
+const DetailCard = () => {
+  const { theme } = useTheme()
+  const [detail, setDetail] = useState({})
+  const [token, setToken] = useState('');
+  const { id } = useParams('')
+ 
   useEffect(() => {
     //Nesse useEffect, você vai fazer um fetch na api passando o 
     //id do dentista que está vindo do react-router e carregar os dados em algum estado
-    }, []);
-  return (
+
+    setToken(localStorage.getItem('token'));
+
+    const requestConfig = {
+      method: 'GET',
+      headers: {
+      'Authorization': `Bearer ${token}`,
+      }
+    }
+
+    fetch(`http://dhodonto.ctdprojetos.com.br/dentista?matricula=${id}`, requestConfig)
+    .then(
+      response => {
+         response.json().then(
+          data => {
+            setDetail(data)
+          }
+        )
+      }
+    )
+
+  }, []);
+
+    return (
     //As instruções que estão com {''} precisam ser 
     //substituídas com as informações que vem da api
     <>
-      <h1>Detail about Dentist {props.containerData.nome}</h1>
+      <h1 className={`h1-${theme}`}>Detail about Dentist {detail.nome}</h1>
       <section className="card col-sm-12 col-lg-6 container">
         {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
+          // está em dark mode e deverá utilizar o css correto */}
         <div
-          className={`card-body row`}
+          className={`card-body row ${theme}`}
         >
           <div className="col-sm-12 col-lg-6">
             <img
@@ -28,22 +57,21 @@ const DetailCard = (props) => {
           </div>
           <div className="col-sm-12 col-lg-6">
             <ul className="list-group">
-              <li className="list-group-item">Nome: {props.containerData.nome}</li>
+              <li className="list-group-item">Nome: {detail.nome} </li>
               <li className="list-group-item">
-                Sobrenome: {props.containerData.sobrenome}
+                Sobrenome: {detail.sobrenome}
               </li>
               <li className="list-group-item">
-                Usuário: {props.containerData.usuario.username}
+                Matricula: {detail.matricula}
               </li>
             </ul>
             <div className="text-center">
               {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-              // está em dark mode e deverá utilizado o css correto */}
+                // está em dark mode e deverá utilizado o css correto */}
               <button
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
-                className={`btn btn-light ${styles.button
-                  }`}
+                className={`btn btn-${theme} ${styles.button}`}
               >
                 Marcar consulta
               </button>

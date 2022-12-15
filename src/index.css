@@ -16,7 +16,13 @@ main{
   min-height: calc(100vh - 292px);
 }
 
-h1{
+.h1-light{
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.h1-dark{
+  color: white;
   text-align: center;
   padding: 2rem 0;
 }
@@ -52,6 +58,10 @@ form{
   background-color: rgb(214, 214, 214);
 }
 
+.btn-dark{
+  background-color: #12121296;
+}
+
 .card-grid{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -83,7 +93,8 @@ tr:nth-child(even) {
   background-color: #12121296;
   color: white;
 }
-.dark > a {
+
+.dark a {
   color: white;
 }
 

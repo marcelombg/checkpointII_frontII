@@ -9,33 +9,48 @@ import Detail from "./Routes/Detail";
 import Footer from "./Components/Footer";
 import "./index.css";
 import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom";
+import { AuthProvider } from "./hooks/useAuth";
+import DetailCard from "./Components/DetailCard";
+import App from "./App";
+import { ThemeProvider } from "./hooks/useTheme";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-//Lembre-se de configurar suas rotas e seu contexto aqui
 const routerApp = createBrowserRouter([
   {
-    path: 'home',
-    element: <Home />
-  },  
-  {
-    path: 'login',
-    element: <Login />
-  },
-  {
-    path: 'detail',
-    element: <Detail />
-  }
-  ,
-  {
-    path: "*",
-    loader: () => redirect("/home")
+    path: '',
+    element: <App />,
+    children: [
+      {
+        path: 'home',
+        element: <Home />
+      },
+      {
+        path: 'login',
+        element: <Login />
+      },
+      {
+        path: 'detail',
+        element: <Detail />
+      },
+      {
+        path: 'dentist/:id',
+        element: <DetailCard />
+      }
+      ,
+      {
+        path: "*",
+        loader: () => redirect("/home")
+      }
+    ]
   }
 ])
 
 root.render(
   <React.StrictMode>
-    <Navbar />
-    <RouterProvider router = {routerApp} />
-    <Footer />
+    <AuthProvider>
+      <ThemeProvider>
+        <RouterProvider router={routerApp} />
+      </ThemeProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
