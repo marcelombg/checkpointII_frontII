@@ -5,9 +5,6 @@ import DetailCard from "../Components/DetailCard";
 const Detail = () => {
   const [detail, setDetail] = useState([])
 
-  useEffect(() => {
-  }, []);
-
   return (
     <>
       

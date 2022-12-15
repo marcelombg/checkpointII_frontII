@@ -37,7 +37,6 @@ const ScheduleForm = () => {
 
   const handleSubmit = (event) => {
 
-
     //Nesse handlesubmit você deverá usar o preventDefault,
     //obter os dados do formulário e enviá-los no corpo da requisição
     //para a rota da api que marca a consulta
@@ -46,13 +45,11 @@ const ScheduleForm = () => {
 
     event.preventDefault();
 
-
     if (token === "" || token === null) {
+
       toast.error("Usuário não autorizado.");
 
-    }
-
-    if (matriculaPaciente === "" || matriculaDentista === "" || date === "") {
+    } else if (matriculaPaciente === "" || matriculaDentista === "" || date === "") {
 
       toast.error("Um ou mais campos não preenchidos.");
 
@@ -84,10 +81,7 @@ const ScheduleForm = () => {
 
               toast.success("Consulta marcada com sucesso! Você será redirecionado para a Home.");
 
-              setTimeout(
-                () => window.location.href = "http://localhost:3000/home",
-                4000
-              );
+              setTimeout(() => window.location.href = "http://localhost:3000/home", 4000);
 
             })
             .catch((e) => {

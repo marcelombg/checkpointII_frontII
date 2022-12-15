@@ -11,8 +11,7 @@ const DetailCard = () => {
   const [token, setToken] = useState('');
   const { id } = useParams('')
 
-
-
+ 
   useEffect(() => {
     //Nesse useEffect, você vai fazer um fetch na api passando o 
     //id do dentista que está vindo do react-router e carregar os dados em algum estado
