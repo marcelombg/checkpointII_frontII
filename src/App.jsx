@@ -11,14 +11,12 @@ function App() {
     <>
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar a classe dark ou light */}
-      <div className='root'>
-        <div className={`app${theme}`}>
+      <div id="root" className={`${theme}`}>
           <Navbar />
           <main>
           <Outlet />
           </main>
           <Footer />
-        </div>
       </div>
     </>
   );

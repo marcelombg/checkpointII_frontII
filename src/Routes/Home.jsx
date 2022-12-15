@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import Card from "../Components/Card";
+import { useTheme } from "../hooks/useTheme";
 
 const Home = () => {
 
   const [card, setCard] = useState([])
+  const { theme } = useTheme()
 
   useEffect(() => {
     //Nesse useEffect, deverá ser obtido todos os dentistas da API
@@ -25,7 +27,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>Home</h1>
+      <h1 className={`h1-${theme}`}>Home</h1>
       <div className="card-grid container">
 
         {
