@@ -11,7 +11,6 @@ const DetailCard = (props) => {
   const [token, setToken] = useState('');
   const { id } = useParams('')
 
-  console.log(props.containerData)
   useEffect(() => {
     //Nesse useEffect, você vai fazer um fetch na api passando o 
     //id do dentista que está vindo do react-router e carregar os dados em algum estado
@@ -25,7 +24,6 @@ const DetailCard = (props) => {
       }
     }
 
-    console.log(token)
 
     fetch(`http://dhodonto.ctdprojetos.com.br/dentista?matricula=${id}`, requestConfig)
     .then(

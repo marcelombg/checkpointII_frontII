@@ -12,8 +12,6 @@ const ScheduleForm = () => {
   const { theme } = useTheme()
   const [dentist, setDentist] = useState([])
   const [pacient, setPacient] = useState([])
-  const [targetPacient, setTargetPacient] = useState('')
-  const [targetDentist, setTargetDentist] = useState('')
   const [date, setDate] = useState([])
   const [token, setToken] = useState('');
 
@@ -69,21 +67,9 @@ const ScheduleForm = () => {
         'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(
-          {
-            "paciente":
-            {
-              "matricula": "`${pacienteList.matricula}`",
-            },
-            "dentista":
-            {
-              "matricula": "`${dentistlist.matricula}`",
-            },
-            "dataHoraAgendamento": "2022-12-18T22:42:40.815Z"
-          }
+          
         )
       }
-
-      console.log(requestConfig)
 
       fetch('http://dhodonto.ctdprojetos.com.br/consulta', requestConfig)
         .then(
@@ -129,7 +115,6 @@ const ScheduleForm = () => {
                       <option
                         key={dentistlist.matricula}
                         value={dentistlist.matricula}
-                        onChange={(e) => setTargetPacient(e.target.value)}
                       >
                         {dentistlist.nome} {dentistlist.sobrenome}
                       </option>
