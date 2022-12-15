@@ -5,11 +5,13 @@ import { useTheme } from "../hooks/useTheme";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-const DetailCard = (props) => {
+const DetailCard = () => {
   const { theme } = useTheme()
   const [detail, setDetail] = useState({})
   const [token, setToken] = useState('');
   const { id } = useParams('')
+
+
 
   useEffect(() => {
     //Nesse useEffect, você vai fazer um fetch na api passando o 
@@ -24,11 +26,10 @@ const DetailCard = (props) => {
       }
     }
 
-
     fetch(`http://dhodonto.ctdprojetos.com.br/dentista?matricula=${id}`, requestConfig)
     .then(
-      async (response) => {
-         await response.json().then(
+      response => {
+         response.json().then(
           data => {
             setDetail(data)
           }
@@ -37,6 +38,8 @@ const DetailCard = (props) => {
     )
 
   }, []);
+
+  console.log(detail)
 
   return (
     //As instruções que estão com {''} precisam ser 
@@ -63,7 +66,7 @@ const DetailCard = (props) => {
                 Sobrenome: {detail.sobrenome}
               </li>
               <li className="list-group-item">
-                Usuário: {detail.matricula}
+                Matricula: {detail.matricula}
               </li>
             </ul>
             <div className="text-center">
@@ -72,8 +75,7 @@ const DetailCard = (props) => {
               <button
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
-                className={`btn btn-${theme} ${styles.button
-                  }`}
+                className={`btn btn-${theme} ${styles.button}`}
               >
                 Marcar consulta
               </button>

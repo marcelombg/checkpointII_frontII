@@ -20,18 +20,18 @@ const ScheduleForm = () => {
     setToken(localStorage.getItem("token"));
 
     fetch("http://dhodonto.ctdprojetos.com.br/dentista").then(
-      async (response) => {
-      await response.json().then((data) => {
-        setDentist(data);
+      response => {
+        response.json().then((data) => {
+          setDentist(data);
+        });
       });
-    });
 
     fetch("http://dhodonto.ctdprojetos.com.br/paciente").then(
-      async (response) => {
-      await response.json().then((data) => {
-        setPacient(data.body);
+      response => {
+        response.json().then((data) => {
+          setPacient(data.body);
+        });
       });
-    });
 
   }, []);
 
@@ -47,7 +47,7 @@ const ScheduleForm = () => {
     event.preventDefault();
 
 
-    if (token === "" || token === null){
+    if (token === "" || token === null) {
       toast.error("Usuário não autorizado.");
 
     }
@@ -76,8 +76,8 @@ const ScheduleForm = () => {
       };
 
       fetch("http://dhodonto.ctdprojetos.com.br/consulta", requestConfig).then(
-        async (response) => {
-          await response
+        response => {
+          response
             .json()
             .then((data) => {
               console.log(data);
