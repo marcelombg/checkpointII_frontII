@@ -50,7 +50,7 @@ const ScheduleForm = () => {
 
       toast.error("Usuário não autorizado. Você será redirecionado para a página de Login.");
 
-      setTimeout(() => window.location.href = "http://localhost:3000/login", 4000);
+      setTimeout(() => window.location.href = "/login", 4000);
 
     } else if (matriculaPaciente === "" || matriculaDentista === "" || date === "") {
 
@@ -84,7 +84,7 @@ const ScheduleForm = () => {
 
               toast.success("Consulta marcada com sucesso! Você será redirecionado para a Home.");
 
-              setTimeout(() => window.location.href = "http://localhost:3000/home", 4000);
+              setTimeout(() => window.location.href = "/home", 4000);
 
             })
             .catch((e) => {
