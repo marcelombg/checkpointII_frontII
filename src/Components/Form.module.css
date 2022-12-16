@@ -3,7 +3,7 @@
   gap: 1rem;
   padding: 1rem;
   margin-top: 2rem;
-  height: calc(100vh -86px);
+  height: fit-content;
 }
 
 .cardDark{

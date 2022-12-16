@@ -6,8 +6,6 @@ const Card = (props) => {
 
   return (
     <>
-      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
       <div className={`card ${theme}`}>
         <img
           className="card-img-top"
@@ -15,8 +13,6 @@ const Card = (props) => {
           alt="doctor placeholder"
         />
         <div className={`card-body ${styles.CardBody}`}>
-          {/* Na linha seguinte o link deverá utilizar a matricula, nome e sobrenome do dentista
-          que vem da API */}
           <a href={`/dentist/${props.containerData.matricula}`}>
             <h5 className={`card-title ${styles.title}`}>{props.containerData.nome}</h5>
           </a>
