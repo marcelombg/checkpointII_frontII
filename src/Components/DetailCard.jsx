@@ -24,7 +24,7 @@ const DetailCard = () => {
       }
     }
 
-    fetch(`http://dhodonto.ctdprojetos.com.br/dentista?matricula=${id}`, requestConfig)
+    fetch(`https://dhodonto.ctdprojetos.com.br/dentista?matricula=${id}`, requestConfig)
     .then(
       response => {
          response.json().then(
