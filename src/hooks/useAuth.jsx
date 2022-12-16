@@ -25,8 +25,8 @@ export function AuthProvider(props) {
           console.log(data);
 
           localStorage.setItem("token", data.token);
-          window.location.href = "/home";
           toast.success("Login feito com sucesso");
+          setTimeout(() => window.location.href = "/home", 2000)          
         })
         .catch((e) => {
           toast.error(
@@ -38,7 +38,7 @@ export function AuthProvider(props) {
 
   const logout = () => {
     localStorage.removeItem('token');
-    window.location.href = "/login"
+    setTimeout(() => window.location.href = "/login", 2000)          
   }
 
   return (
