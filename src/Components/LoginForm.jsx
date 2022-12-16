@@ -13,8 +13,12 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    localStorage.getItem('token') !== null ? window.location.href = "/home" : null;
-  },[username,password]);
+
+    if(localStorage.getItem('token') !== null){
+      window.location.href = "/home"
+    }
+    
+  },[]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
