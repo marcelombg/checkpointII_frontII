@@ -19,14 +19,14 @@ const ScheduleForm = () => {
 
     setToken(localStorage.getItem("token"));
 
-    fetch("http://dhodonto.ctdprojetos.com.br/dentista").then(
+    fetch("https://dhodonto.ctdprojetos.com.br/dentista").then(
       response => {
         response.json().then((data) => {
           setDentist(data);
         });
       });
 
-    fetch("http://dhodonto.ctdprojetos.com.br/paciente").then(
+    fetch("https://dhodonto.ctdprojetos.com.br/paciente").then(
       response => {
         response.json().then((data) => {
           setPacient(data.body);
@@ -75,7 +75,7 @@ const ScheduleForm = () => {
         }),
       };
 
-      fetch("http://dhodonto.ctdprojetos.com.br/consulta", requestConfig).then(
+      fetch("https://dhodonto.ctdprojetos.com.br/consulta", requestConfig).then(
         response => {
           response
             .json()
