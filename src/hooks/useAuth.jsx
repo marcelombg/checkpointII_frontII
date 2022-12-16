@@ -26,7 +26,7 @@ export function AuthProvider(props) {
           console.log(data);
 
           localStorage.setItem("token", data.token);
-          window.location.href = "http://localhost:3000/home";
+          window.location.href = "/home";
           toast.success("Login feito com sucesso");
         })
         .catch((e) => {
@@ -39,7 +39,7 @@ export function AuthProvider(props) {
 
   const logout = () => {
     localStorage.removeItem('token');
-    window.location.href = "http://localhost:3000/login"
+    window.location.href = "/login"
   }
 
   return (
