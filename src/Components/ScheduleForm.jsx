@@ -1,4 +1,3 @@
-// eslint-disable
 import { useEffect, useState } from "react";
 import styles from "./ScheduleForm.module.css";
 import React from "react";
@@ -37,12 +36,6 @@ const ScheduleForm = () => {
 
 
   const handleSubmit = (event) => {
-
-    //Nesse handlesubmit você deverá usar o preventDefault,
-    //obter os dados do formulário e enviá-los no corpo da requisição
-    //para a rota da api que marca a consulta
-    //lembre-se que essa rota precisa de um Bearer Token para funcionar.
-    //Lembre-se de usar um alerta para dizer se foi bem sucedido ou ocorreu um erro
 
     event.preventDefault();
 
@@ -166,8 +159,6 @@ const ScheduleForm = () => {
             </div>
           </div>
           <div className={`row ${styles.rowSpacing}`}>
-            {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
             <button
               className={`btn btn-${theme} ${styles.button}`}
               type="submit"

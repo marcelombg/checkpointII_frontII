@@ -6,9 +6,6 @@ import { ToastContainer } from 'react-toastify';
 import { useAuth } from "../hooks/useAuth";
 import { useTheme } from "../hooks/useTheme";
 
-/*eslint-disable */
-
-
 const LoginForm = () => {
   const { login } = useAuth();
   const { theme } = useTheme()

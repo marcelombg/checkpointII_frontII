@@ -1,10 +1,8 @@
 import { useState } from "react"
 import { createContext, useContext } from "react"
 
-// Ciração do Contexto
 const ThemeContext = createContext()
 
-// Criação do Provedor para o Contexto
 export function ThemeProvider(props) {
 
     const themeLocalStorage = localStorage.getItem('theme')
