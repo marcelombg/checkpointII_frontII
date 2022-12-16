@@ -14,7 +14,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     localStorage.getItem('token') !== null ? window.location.href = "/home" : null;
-  });
+  },[username,password]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
